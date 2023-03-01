@@ -1,0 +1,11 @@
+<div class="accordion" id="accordionExample">
+    
+    <app-post-item *ngFor="let post of postslist;let i=index"
+        [postTitre]="post.titre"
+        [postContenu]="post.contenu"
+        [postId]="post.id"
+        >
+    </app-post-item>  
+    
+    </div>
+    
