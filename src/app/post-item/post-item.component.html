@@ -3,15 +3,14 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         {{postTitre}} #{{postId}}
       </button>
-      <button type="button" class="btn btn-light" (click)="removePost(postId)">
-        <i class="fa-solid fa-trash"></i>
+      <button type="button" class="btn btn-light" ng-click="removePost(id)"> <i class="fa-solid fa-trash " style="color: blue;"></i>
       </button>
 
-      <!-- Button trigger modal -->
+     
     
 
           </h2>
-          <div id="collapseOne" class="accordion-collapse collapse "  [ngClass]="postId ==1? 'show':'' " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div id="collapseOne" class="accordion-collapse collapse show"   aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
               {{postContenu}}
           </div>

@@ -1,44 +1,62 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {  Observable } from 'rxjs';
 import { Post } from 'src/models/post.model';
- //pour appeler le class post.model.ts
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostServiceService {
   
-  postsArray= [
-            new Post(1 , 'PC DE BUREAU ' , 'PC DE BUREAU LENOVO THINKCENTRE NÉO 50T I3 12È GÉN 4GO 1TO - NOIR'),
-            new Post(2 , 'Laptop' , 'Lenovo 2022 Newest Ideapad 3 Laptop, 15.6" HD Touchscreen, 11th Gen Intel Core i3-1115G4 Processor, 8GB DDR4 RAM, 256GB PCIe NVMe SSD, HDMI,'),
-            new Post(3 , 'Tablette' , 'Lenovo - Tab P11 Plus - Tablet - 11" 2K Display - MediaTek Octa-Core Processor - 4GB Memory - 128GB Storage - Dolby Atmos -'),
-            new Post(4 , 'Casque' , 'Lenovo 100 Headset - Stereo - USB - Wired - Over-The-Head - Binaural'), 
-  ]
+  
+apiurl='http://localhost:3000/post';
+  postslist: any;
 
-  constructor() {
+  // injecter le service HttpClient pour pouvoir se connecter au serveur node
+  constructor(private http: HttpClient) {
+    this.chargerListpost().subscribe((listpost) => {
+      console.log(listpost);
+    });
+  }
+  chargerListpost():Observable<Post[]>{
+    return this.http.get<Post[]>('http://localhost:3000/post');
+
+  }
+   //read crud<>
+   getPosts():Observable<Post[]>{
+    return this.http.get<Post[]>(this.apiurl);
     
    }
 
-   //read crud
-   getPosts(){
-    return this.postsArray;
-   }
+   addpost(a:Post):Observable<Post[]>{
+    return this.http.post<Post[]>(this.apiurl,a);
 
-  //delete crud
-   delete(id:number){
-    this.postsArray.forEach((element,index) => {
-      if(element.id == id){
-        this.postsArray.splice(index,1)
-      }
-    });
    }
+   getpostbyId(id:string):Observable<Post[]>{
+    return this.http.get<Post[]>(this.apiurl+id);
 
-   //edit crud
-   editPost(id:number, newContent:string, newTitle:string){
-    this.postsArray.forEach((element,index) => {
-      if(element.id == id){
-        element.contenu = newContent;
-        element.titre = newTitle;
-      }
-    });
    }
+    updatepost(a:Post):Observable<any>{
+      return this.http.put<any>(this.apiurl+a.id,a);
+
+    }
+    deletepost(a:Post)  :Observable<any>{
+      return this.http.delete<any>(this.apiurl+a.id);
+
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+  

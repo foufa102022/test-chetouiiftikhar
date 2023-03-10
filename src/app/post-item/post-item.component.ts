@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Post } from 'src/models/post.model';
 import { PostServiceService } from '../services/post-service.service';
+
 
 @Component({
   selector: 'app-post-item',
@@ -13,9 +15,9 @@ export class PostItemComponent {
 
   constructor(private postService: PostServiceService){}
 
-  removePost(id:number){
+  removePost(id :Post){
     if(confirm("Are you sure to delete post with id: "+id)) {
-      this.postService.delete(id);
+      this.postService.deletepost(id);
     }
     
   }

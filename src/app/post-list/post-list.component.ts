@@ -8,11 +8,17 @@ import { PostServiceService } from '../services/post-service.service';
 })
 export class PostListComponent {
   postslist: any;
+  postServicesService: any;
 
   constructor(private postservice: PostServiceService) { 
+    this.postservice.chargerListpost()
+    .subscribe((postslist) => {
+      this.postslist=postslist;
+      this.postServicesService.postsArray= postslist;
+      
+    });
 
-    this.postslist = postservice.getPosts();
-
+    
   }
 
 }

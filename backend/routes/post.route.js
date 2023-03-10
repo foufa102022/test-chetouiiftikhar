@@ -8,7 +8,7 @@ posts=[
      {id:"2" , titre: 'Laptop' , contenu :'Lenovo 2022 Newest Ideapad 3 Laptop, 15.6" HD Touchscreen, 11th Gen Intel Core i3-1115G4 Processor, 8GB DDR4 RAM, 256GB PCIe NVMe SSD, HDMI,'},
      {id:"3" , titre: 'Tablette' , contenu :'Lenovo - Tab P11 Plus - Tablet - 11" 2K Display - MediaTek Octa-Core Processor - 4GB Memory - 128GB Storage - Dolby Atmos -'},
      {id:"4" , titre: 'Casque' , contenu :'Lenovo 100 Headset - Stereo - USB - Wired - Over-The-Head - Binaural'}, 
-];
+]
 
 // GET
 route.get("/", (req, res) => {
@@ -32,9 +32,9 @@ route.get("/:id", (req, res) => {
 
 
   Post.findById(req.params.id)
-    .then((monApp) => {
-      console.log(monApp);
-      res.status(200).json(monApp);
+    .then((monpost) => {
+      console.log(monpost);
+      res.status(200).json(monpost);
     })
     .catch((err) => {
       res.status(404).json({ message: "post not found!" });
@@ -47,9 +47,9 @@ route.get("/:id", (req, res) => {
 // POST
 route.post("/", (req, res) => {
   Post.create({ "titre": req.body.titre, "contenu": req.body.contenu })
-    .then((monApp) => {
-        console.log(monApp);
-        res.status(200).json(monApp);
+    .then((monpost) => {
+        console.log(monpost);
+        res.status(200).json(monpost);
       }
     );
 });
@@ -58,13 +58,13 @@ route.post("/", (req, res) => {
 route.put("/:id", (req, res) => {
 
 
-  Post.updateOne({_id:req.params.id},{titre:req.body.titre,contenu: req.body.contenu})
+  Post.updateOne({id:req.params.id},{titre:req.body.titre,contenu: req.body.contenu})
       .then((message) => {
         console.log(message);
         res.status(200).json(message);
       })
       .catch((err) => {
-        res.status(404).json({  "post not found!" });
+        res.status(404).json({message: "post not found!" });
         console.log("post non trouvé !");
       });
 
@@ -74,13 +74,13 @@ route.put("/:id", (req, res) => {
 route.delete("/posts/:id", (req, res) => {
 
 
-  Post.deleteOne({_id:req.params.id})
+  Post.deleteOne({id:req.params.id})
       .then((message) => {
         console.log(message);
         res.status(200).json(message);
       })
       .catch((err) => {
-        res.status(404).json({  "post not found!" });
+        res.status(404).json({ message: "post not found!"});
       console.log("post non trouvé !");
       });
 
