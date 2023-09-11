@@ -14,8 +14,8 @@ app.use(cors());
 
 mongoose
   .connect(
-   // "mongodb+srv://iftikhar:vitonicconception@cluster0.c0qwkd2.mongodb.net/post?retryWrites=true&w=majority"
-    "mongodb+srv://chetouiiftikhar:vitonicconception@cluster0.hnqbnlb.mongodb.net/?retryWrites=true&w=majority"
+   // "mongodb+srv://iftikhar:v***************n@cluster0.c0qwkd2.mongodb.net/post?retryWrites=true&w=majority"
+    "mongodb+srv://chetouiiftikhar:v***************n@cluster0.hnqbnlb.mongodb.net/?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("Database connected !!!");
